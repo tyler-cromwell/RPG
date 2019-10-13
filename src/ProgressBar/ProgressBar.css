@@ -1,0 +1,84 @@
+.ProgressBarHealth {
+    /* The entire element */
+    border: 2px;
+    background: white;
+    text-align: center;
+    width: 150px;
+}
+
+
+.ProgressBarStamina {
+    /* The entire element */
+    border: 2px;
+    background: white;
+    text-align: center;
+    width: 150px;
+}
+
+
+.ProgressBarMana {
+    /* The entire element */
+    border: 2px;
+    background: white;
+    text-align: center;
+    width: 150px;
+}
+
+
+.ProgressBarHealth::-webkit-progress-value {
+    /* Filled part of the bar */
+    background: red;
+}
+
+
+.ProgressBarStamina::-webkit-progress-value {
+    /* Filled part of the bar */
+    background: rgb(50, 200, 0);
+}
+
+
+.ProgressBarMana::-webkit-progress-value {
+    /* Filled part of the bar */
+    background: rgb(50, 90, 255);
+}
+
+
+/*
+.ProgressBar::-moz-progress-bar {
+    background: lightcolor;
+}
+*/
+
+
+.ProgressBarHealth::-webkit-progress-bar {
+    /* Empty part of the bar */
+    background: lightgrey;
+    border-radius: 5px;
+    overflow: hidden;   /* Critical */
+    width: 150px;
+}
+
+
+.ProgressBarStamina::-webkit-progress-bar {
+    /* Empty part of the bar */
+    background: lightgrey;
+    border-radius: 5px;
+    overflow: hidden;   /* Critical */
+    width: 150px;
+}
+
+
+.ProgressBarMana::-webkit-progress-bar {
+    /* Empty part of the bar */
+    background: lightgrey;
+    border-radius: 5px;
+    overflow: hidden;   /* Critical */
+    width: 150px;
+}
+
+
+.ProgressStat {
+    font-weight: bold;
+    /* right: 100px; */
+    position: relative;
+}
