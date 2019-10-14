@@ -1,7 +1,7 @@
 .ProgressBarHealth {
     /* The entire element */
     border: 2px;
-    background: white;
+    background: black;
     text-align: center;
     width: 150px;
 }
@@ -10,7 +10,7 @@
 .ProgressBarStamina {
     /* The entire element */
     border: 2px;
-    background: white;
+    background: black;
     text-align: center;
     width: 150px;
 }
@@ -19,7 +19,7 @@
 .ProgressBarMana {
     /* The entire element */
     border: 2px;
-    background: white;
+    background: black;
     text-align: center;
     width: 150px;
 }
@@ -78,6 +78,7 @@
 
 
 .ProgressStat {
+    color: white;
     font-weight: bold;
     /* right: 100px; */
     position: relative;
