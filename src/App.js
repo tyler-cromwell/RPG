@@ -87,6 +87,7 @@ function App() {
 
       switch(class_) {
         case 'Hunter':
+        case 'Rogue':
           setMaxHealth(mh => mh + 10)
           setMaxStamina(ms => ms + 20)
           setHealth(h => h + 10)
