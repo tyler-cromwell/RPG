@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import ProgressBar from './ProgressBar/ProgressBar';
+import ProgressBar from './ProgressBar/component';
 
 import './App.css';
 

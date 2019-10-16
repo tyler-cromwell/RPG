@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import './ProgressBar.css';
+import './styles.css';
 
 
 function ProgressBar(props) {
