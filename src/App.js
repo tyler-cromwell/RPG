@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 
 import ProgressBar from './ProgressBar'
 
-import './App.css';
+import './App.css'
 
 
 function App() {
@@ -20,13 +20,14 @@ function App() {
   const [name, setName] = useState('')
   const [race, setRace] = useState(races[0])
   const [class_, setClass] = useState(classes[race][0])
-  const [created, setCreated] = useState(false);
-  const [maxHealth, setMaxHealth] = useState(100);
-  const [maxStamina, setMaxStamina] = useState(100);
-  const [maxMana, setMaxMana] = useState(100);
-  const [health, setHealth] = useState(100);
-  const [stamina, setStamina] = useState(100);
-  const [mana, setMana] = useState(100);
+  const [level, setLevel] = useState(1)
+  const [created, setCreated] = useState(false)
+  const [maxHealth, setMaxHealth] = useState(100)
+  const [maxStamina, setMaxStamina] = useState(100)
+  const [maxMana, setMaxMana] = useState(100)
+  const [health, setHealth] = useState(100)
+  const [stamina, setStamina] = useState(100)
+  const [mana, setMana] = useState(100)
 
 
   const clicked = () => {
@@ -36,7 +37,7 @@ function App() {
       console.log(class_)
       setCreated(true)
     }
-  };
+  }
 
 
   useEffect(() => {
@@ -96,12 +97,12 @@ function App() {
   if (created) {
     return (
       <div className="App">
-        <div><span className="label">{name}, {race} {class_}</span></div>
+        <div><span className="label">{name}, {race} {class_} (Level {level})</span></div>
         <div><ProgressBar id='Health' value={health} max={maxHealth}/></div>
         <div><ProgressBar id='Stamina' value={stamina} max={maxStamina}/></div>
         <div><ProgressBar id='Mana' value={mana} max={maxMana}/></div>
       </div>
-    );
+    )
   }
   else {
     return (
@@ -123,8 +124,8 @@ function App() {
           Create!
         </button>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
