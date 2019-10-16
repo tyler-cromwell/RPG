@@ -33,64 +33,93 @@ function App() {
 
   const clicked = () => {
     if (name !== "") {
+      switch (race) {
+        case 'Human':
+          setMaxHealth(mh => mh + Human.modHealth)
+          setMaxStamina(ms => ms + Human.modStamina)
+          setMaxMana(mm => mm + Human.modMana)
+          setHealth(h => h + Human.modHealth)
+          setStamina(s => s + Human.modStamina)
+          setMana(m => m + Human.modMana)
+          break
+        case 'Dwarf':
+          setMaxHealth(mh => mh + Dwarf.modHealth)
+          setMaxStamina(ms => ms + Dwarf.modStamina)
+          setMaxMana(mm => mm + Dwarf.modMana)
+          setHealth(h => h + Dwarf.modHealth)
+          setStamina(s => s + Dwarf.modStamina)
+          setMana(m => m + Dwarf.modMana)
+          break
+        case 'High Elf':
+          setMaxHealth(mh => mh + HighElf.modHealth)
+          setMaxStamina(ms => ms + HighElf.modStamina)
+          setMaxMana(mm => mm + HighElf.modMana)
+          setHealth(h => h + HighElf.modHealth)
+          setStamina(s => s + HighElf.modStamina)
+          setMana(m => m + HighElf.modMana)
+          break
+        case 'Dark Elf':
+          setMaxHealth(mh => mh + DarkElf.modHealth)
+          setMaxStamina(ms => ms + DarkElf.modStamina)
+          setMaxMana(mm => mm + DarkElf.modMana)
+          setHealth(h => h + DarkElf.modHealth)
+          setStamina(s => s + DarkElf.modStamina)
+          setMana(m => m + DarkElf.modMana)
+          break
+        case 'Orc':
+          setMaxHealth(mh => mh + Orc.modHealth)
+          setMaxStamina(ms => ms + Orc.modStamina)
+          setMaxMana(mm => mm + Orc.modMana)
+          setHealth(h => h + Orc.modHealth)
+          setStamina(s => s + Orc.modStamina)
+          setMana(m => m + Orc.modMana)
+          break
+        case 'Saurus':
+          setMaxHealth(mh => mh + Saurus.modHealth)
+          setMaxStamina(ms => ms + Saurus.modStamina)
+          setMaxMana(mm => mm + Saurus.modMana)
+          setHealth(h => h + Saurus.modHealth)
+          setStamina(s => s + Saurus.modStamina)
+          setMana(m => m + Saurus.modMana)
+          break
+        default:
+      }
+
+      switch(class_) {
+        case 'Hunter':
+          setMaxHealth(mh => mh + 10)
+          setMaxStamina(ms => ms + 20)
+          setHealth(h => h + 10)
+          setStamina(s => s + 20)
+          break
+        case 'Paladin':
+          setMaxHealth(mh => mh + 10)
+          setMaxStamina(ms => ms + 10)
+          setMaxMana(mm => mm + 10)
+          setHealth(h => h + 10)
+          setStamina(s => s + 10)
+          setMana(m => m + 10)
+          break
+        case 'Warrior':
+          setMaxHealth(mh => mh + 20)
+          setMaxStamina(ms => ms + 10)
+          setHealth(h => h + 20)
+          setStamina(s => s + 10)
+          break
+        case 'Druid':
+        case 'Mage':
+        case 'Priest':
+        case 'Shaman':
+        case 'Warlock':
+          setMaxMana(mm => mm + 30)
+          setMana(m => m + 30)
+          break
+        default:
+      }
+
       setCreated(true)
     }
   }
-
-
-  useEffect(() => {
-    switch (race) {
-      case 'Human':
-        setMaxHealth(mh => mh + Human.modHealth)
-        setMaxStamina(ms => ms + Human.modStamina)
-        setMaxMana(mm => mm + Human.modMana)
-        setHealth(h => h + Human.modHealth)
-        setStamina(s => s + Human.modStamina)
-        setMana(m => m + Human.modMana)
-        break
-      case 'Dwarf':
-        setMaxHealth(mh => mh + Dwarf.modHealth)
-        setMaxStamina(ms => ms + Dwarf.modStamina)
-        setMaxMana(mm => mm + Dwarf.modMana)
-        setHealth(h => h + Dwarf.modHealth)
-        setStamina(s => s + Dwarf.modStamina)
-        setMana(m => m + Dwarf.modMana)
-        break
-      case 'High Elf':
-        setMaxHealth(mh => mh + HighElf.modHealth)
-        setMaxStamina(ms => ms + HighElf.modStamina)
-        setMaxMana(mm => mm + HighElf.modMana)
-        setHealth(h => h + HighElf.modHealth)
-        setStamina(s => s + HighElf.modStamina)
-        setMana(m => m + HighElf.modMana)
-        break
-      case 'Dark Elf':
-        setMaxHealth(mh => mh + DarkElf.modHealth)
-        setMaxStamina(ms => ms + DarkElf.modStamina)
-        setMaxMana(mm => mm + DarkElf.modMana)
-        setHealth(h => h + DarkElf.modHealth)
-        setStamina(s => s + DarkElf.modStamina)
-        setMana(m => m + DarkElf.modMana)
-        break
-      case 'Orc':
-        setMaxHealth(mh => mh + Orc.modHealth)
-        setMaxStamina(ms => ms + Orc.modStamina)
-        setMaxMana(mm => mm + Orc.modMana)
-        setHealth(h => h + Orc.modHealth)
-        setStamina(s => s + Orc.modStamina)
-        setMana(m => m + Orc.modMana)
-        break
-      case 'Saurus':
-        setMaxHealth(mh => mh + Saurus.modHealth)
-        setMaxStamina(ms => ms + Saurus.modStamina)
-        setMaxMana(mm => mm + Saurus.modMana)
-        setHealth(h => h + Saurus.modHealth)
-        setStamina(s => s + Saurus.modStamina)
-        setMana(m => m + Saurus.modMana)
-        break
-      default:
-    }
-  }, [race])
 
 
   useEffect(() => {
