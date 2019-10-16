@@ -1,3 +1,18 @@
 .App {
   background-color: black;
+  min-height: 100vh;
+}
+
+
+.label {
+  color: white;
+  padding-right: 10px;
+}
+
+
+#inputChargenName {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  width: 110px;
 }
