@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+import { Human, Dwarf, HighElf, DarkElf, Orc, Saurus } from './Races'
 import ProgressBar from './ProgressBar'
 
 import './App.css'
@@ -32,12 +33,64 @@ function App() {
 
   const clicked = () => {
     if (name !== "") {
-      console.log(name)
-      console.log(race)
-      console.log(class_)
       setCreated(true)
     }
   }
+
+
+  useEffect(() => {
+    switch (race) {
+      case 'Human':
+        setMaxHealth(mh => mh + Human.modHealth)
+        setMaxStamina(ms => ms + Human.modStamina)
+        setMaxMana(mm => mm + Human.modMana)
+        setHealth(h => h + Human.modHealth)
+        setStamina(s => s + Human.modStamina)
+        setMana(m => m + Human.modMana)
+        break
+      case 'Dwarf':
+        setMaxHealth(mh => mh + Dwarf.modHealth)
+        setMaxStamina(ms => ms + Dwarf.modStamina)
+        setMaxMana(mm => mm + Dwarf.modMana)
+        setHealth(h => h + Dwarf.modHealth)
+        setStamina(s => s + Dwarf.modStamina)
+        setMana(m => m + Dwarf.modMana)
+        break
+      case 'High Elf':
+        setMaxHealth(mh => mh + HighElf.modHealth)
+        setMaxStamina(ms => ms + HighElf.modStamina)
+        setMaxMana(mm => mm + HighElf.modMana)
+        setHealth(h => h + HighElf.modHealth)
+        setStamina(s => s + HighElf.modStamina)
+        setMana(m => m + HighElf.modMana)
+        break
+      case 'Dark Elf':
+        setMaxHealth(mh => mh + DarkElf.modHealth)
+        setMaxStamina(ms => ms + DarkElf.modStamina)
+        setMaxMana(mm => mm + DarkElf.modMana)
+        setHealth(h => h + DarkElf.modHealth)
+        setStamina(s => s + DarkElf.modStamina)
+        setMana(m => m + DarkElf.modMana)
+        break
+      case 'Orc':
+        setMaxHealth(mh => mh + Orc.modHealth)
+        setMaxStamina(ms => ms + Orc.modStamina)
+        setMaxMana(mm => mm + Orc.modMana)
+        setHealth(h => h + Orc.modHealth)
+        setStamina(s => s + Orc.modStamina)
+        setMana(m => m + Orc.modMana)
+        break
+      case 'Saurus':
+        setMaxHealth(mh => mh + Saurus.modHealth)
+        setMaxStamina(ms => ms + Saurus.modStamina)
+        setMaxMana(mm => mm + Saurus.modMana)
+        setHealth(h => h + Saurus.modHealth)
+        setStamina(s => s + Saurus.modStamina)
+        setMana(m => m + Saurus.modMana)
+        break
+      default:
+    }
+  }, [race])
 
 
   useEffect(() => {
