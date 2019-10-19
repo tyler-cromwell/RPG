@@ -1,3 +1,13 @@
+const races = [
+  'Human',
+  'Dwarf',
+  'High Elf',
+  'Dark Elf',
+  'Orc',
+  'Saurus'
+]
+
+
 const Human = {
   modHealth: 0,
   modStamina: 0,
@@ -41,6 +51,7 @@ const Saurus = {
 
 
 export {
+  races,
   Human,
   Dwarf,
   HighElf,
