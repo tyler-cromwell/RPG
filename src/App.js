@@ -13,9 +13,9 @@ const classes = {
   'Dwarf':    [         'Hunter',         'Paladin', 'Priest', 'Reaper', 'Rogue', 'Shaman',            'Warrior'], //-3
   'High Elf': ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest',           'Rogue',           'Warlock', 'Warrior'], //-2
 
-  'Dark Elf': [                   'Mage', 'Paladin', 'Priest', 'Reaper', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], //-2
+  'Dark Elf': [                   'Mage',            'Priest', 'Reaper', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], //-3
   'Orc':      [         'Hunter',                    'Priest', 'Reaper', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], //-3
-  'Saurus':   ['Druid', 'Hunter', 'Mage',            'Priest',           'Rogue', 'Shaman',            'Warrior']  //-3
+  'Saurus':   ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest',           'Rogue', 'Shaman',            'Warrior']  //-2
 }
 const races = Object.keys(classes)
 
@@ -130,10 +130,6 @@ function App() {
 
   const create = (name, race, class_) => {
     if (name !== "") {
-      setCreated(true)
-      dispatch({type: 'setName', value: name})
-      dispatch({type: 'setRace', value: race})
-      dispatch({type: 'setClass', value: class_})
       let modMaxHealth = 0
       let modMaxStamina = 0
       let modMaxMana = 0
@@ -226,27 +222,28 @@ function App() {
         default:
       }
 
+      dispatch({type: 'setName', value: name})
+      dispatch({type: 'setRace', value: race})
+      dispatch({type: 'setClass', value: class_})
       dispatch({type: 'setMaxHealth', value: character.maxHealth + modMaxHealth})
       dispatch({type: 'setMaxStamina', value: character.maxStamina + modMaxStamina})
       dispatch({type: 'setMaxMana', value: character.maxMana + modMaxMana})
       dispatch({type: 'setHealth', value: character.health + modHealth})
       dispatch({type: 'setStamina', value: character.stamina + modStamina})
       dispatch({type: 'setMana', value: character.mana + modMana})
+      setCreated(true)
     }
   }
 
 
-  let content = (created) ?
-    (
+  let content = (created) ? (
       <div className="App">
         <div><span className="label">{character.name}, {character.race} {character.class_} (Level {character.level})</span></div>
         <div><ProgressBar id='Health' value={character.health} max={character.maxHealth}/></div>
         <div><ProgressBar id='Stamina' value={character.stamina} max={character.maxStamina}/></div>
         <div><ProgressBar id='Mana' value={character.mana} max={character.maxMana}/></div>
       </div>
-    )
-  :
-    (
+    ) : (
       <div className="App">
         <CreateCharacter
           races={races}
@@ -256,8 +253,7 @@ function App() {
           finish={create}
         />
       </div>
-    )
-  ;
+  );
 
   return content
 }
