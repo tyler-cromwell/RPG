@@ -1,7 +1,8 @@
 import React, { useState, useReducer } from 'react'
 
-import { Human, Dwarf, HighElf, DarkElf, Orc, Saurus } from './Races'
 import CreateCharacter from './Character'
+import { Human, Dwarf, HighElf, DarkElf, Orc, Saurus } from './Character/Races'
+import { Druid, Hunter, Mage, Paladin, Priest, Reaper, Rogue, Shaman, Warlock, Warrior } from './Character/Classes'
 import ProgressBar from './ProgressBar'
 
 import './App.css'
@@ -190,34 +191,59 @@ function App() {
       }
 
       switch(class_) {
+        case 'Druid': 
+          modMaxMana += Druid.modMana
+          modMana += Druid.modMana
+          break
         case 'Hunter':
-        case 'Rogue':
-          modMaxHealth += 10
-          modMaxStamina += 20
-          modHealth += 10
-          modStamina += 20
+          modMaxHealth += Hunter.modHealth
+          modMaxStamina += Hunter.modStamina
+          modHealth += Hunter.modHealth
+          modStamina += Hunter.modStamina
+          break
+        case 'Mage':
+          modMaxMana += Mage.modMana
+          modMana += Mage.modMana
           break
         case 'Paladin':
-          modMaxHealth += 10
-          modMaxStamina += 10
-          modMaxMana += 10
-          modHealth += 10
-          modStamina += 10
-          modMana += 10
+          modMaxHealth += Paladin.modHealth
+          modMaxStamina += Paladin.modStamina
+          modMaxMana += Paladin.modMana
+          modHealth += Paladin.modHealth
+          modStamina += Paladin.modStamina
+          modMana += Paladin.modMana
+          break
+        case 'Priest':
+          modMaxMana += Priest.modMana
+          modMana += Priest.modMana
+          break
+        case 'Reaper':
+          modMaxHealth += Reaper.modHealth
+          modMaxStamina += Reaper.modStamina
+          modMaxMana += Reaper.modMana
+          modHealth += Reaper.modHealth
+          modStamina += Reaper.modStamina
+          modMana += Reaper.modMana
+          break
+        case 'Rogue':
+          modMaxHealth += Rogue.modHealth
+          modMaxStamina += Rogue.modStamina
+          modHealth += Rogue.modHealth
+          modStamina += Rogue.modStamina
+          break
+        case 'Shaman':
+          modMaxMana += Shaman.modMana
+          modMana += Shaman.modMana
+          break
+        case 'Warlock':
+          modMaxMana += Warlock.modMana
+          modMana += Warlock.modMana
           break
         case 'Warrior':
           modMaxHealth += 20
           modMaxStamina += 10
           modHealth += 20
           modStamina += 10
-          break
-        case 'Druid':
-        case 'Mage':
-        case 'Priest':
-        case 'Shaman':
-        case 'Warlock':
-          modMaxMana += 30
-          modMana += 30
           break
         default:
       }
