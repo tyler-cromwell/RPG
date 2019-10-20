@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
+import { races } from './Races'
+import { classes } from './Classes'
+
 
 function CreateCharacter(props) {
   const [name, setName] = useState('')
@@ -24,10 +27,10 @@ function CreateCharacter(props) {
         onChange={evt => setName(evt.target.value)}
       />
       <select id="selectRace" onClick={evt => setRace(evt.target.value)}>
-        {props.races.map(r => <option key={r} value={r}>{r}</option>)}
+        {races.map(r => <option key={r} value={r}>{r}</option>)}
       </select>
       <select id="selectClass" onClick={evt => setClass(evt.target.value)}>
-        {props.classes[race].map(c => <option key={c} value={c}>{c}</option>)}
+        {classes[race].map(c => <option key={c} value={c}>{c}</option>)}
       </select>
       <button onClick={() => props.finish(name, race, class_)}>
         Create!

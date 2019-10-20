@@ -3,7 +3,7 @@ import React, { useState, useReducer } from 'react'
 import CreateCharacter from './Character'
 import { races, Human, Dwarf, HighElf, DarkElf, Orc, Saurus } from './Character/Races'
 import { classes, Druid, Hunter, Mage, Paladin, Priest, Reaper, Rogue, Shaman, Warlock, Warrior } from './Character/Classes'
-import ProgressBar from './ProgressBar'
+import HUD from './HUD'
 
 import './App.css'
 
@@ -250,25 +250,18 @@ function App() {
 
 
   let content = (created) ? (
-      <div className="App">
-        <div><span className="label">{character.name}, {character.race} {character.class_} (Level {character.level})</span></div>
-        <div><ProgressBar id='Health' value={character.health} max={character.maxHealth}/></div>
-        <div><ProgressBar id='Stamina' value={character.stamina} max={character.maxStamina}/></div>
-        <div><ProgressBar id='Mana' value={character.mana} max={character.maxMana}/></div>
-      </div>
+      <HUD character={character} />
     ) : (
-      <div className="App">
-        <CreateCharacter
-          races={races}
-          race={character.race}
-          classes={classes}
-          class_={character.class_}
-          finish={create}
-        />
-      </div>
+      <CreateCharacter
+        race={character.race}
+        class_={character.class_}
+        finish={create}
+      />
   );
 
-  return content
+  return <div className="App">
+    {content}
+  </div>
 }
 
 export default App
