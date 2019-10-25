@@ -1,0 +1,42 @@
+#characterInputContainer {
+    align-items: center;
+    display: grid;
+    grid-area: content;
+    justify-content: center;
+    margin: 0px;
+    min-height: 100vh;
+    padding: 0px;
+}
+
+
+#characterInputContent {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    width: 115px;
+}
+
+
+#characterInputName {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    width: 110px;
+    margin: 0px;
+}
+
+
+#characterInputRace {
+    width: inherit;
+}
+
+
+#characterInputClass {
+    width: inherit;
+}
+
+
+#characterInputCreateButton {
+    width: inherit;
+}
