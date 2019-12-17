@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from 'react'
 
-import CreateCharacter from './Character'
+import { CreateCharacterView } from './Character'
 import { races, Human, Dwarf, HighElf, DarkElf, Orc, Saurus } from './Character/Races'
 import { classes, Druid, Hunter, Mage, Paladin, Priest, Reaper, Rogue, Shaman, Warlock, Warrior } from './Character/Classes'
 import HUD from './HUD'
@@ -10,8 +10,8 @@ import './App.css'
 
 const initial = {
   name: '', race: races[0], class_: classes[races[0]][0], level: 1,
-  maxHealth: 100, maxStamina: 100, maxMana: 100,
-  health: 100, stamina: 100, mana: 100
+  maxHealth: 100, maxStamina: 100, maxMana: 100, maxXP: 100,
+  health: 100, stamina: 100, mana: 100, xp: 0
 }
 const reducer = (state, action) => {
   let newState = state
@@ -69,6 +69,22 @@ const reducer = (state, action) => {
       }
 
       return newState
+    case 'setMaxXP':
+      let mxp = action.value
+
+      if (mxp < 0) {
+        newState = {...newState, maxXP: 0}
+        newState = {...newState, xp: 0}
+      } else {
+        newState = {...newState, maxXP: mxp}
+      }
+
+      if (state.stamina > mm) {
+        newState = {...newState, maxXP: mxp}
+        newState = {...newState, xp: mxp}
+      }
+
+      return newState
     case 'setHealth':
       let h = action.value
 
@@ -102,6 +118,18 @@ const reducer = (state, action) => {
         newState = {...newState, mana: 0}
       } else {
         newState = {...newState, mana: m}
+      }
+
+      return newState
+    case 'setXP':
+      let xp = action.value
+
+      if (xp > state.maxXP) {
+        newState = {...newState, xp: state.maxXP}
+      } else if (xp < 0) {
+        newState = {...newState, xp: 0}
+      } else {
+        newState = {...newState, xp: xp}
       }
 
       return newState
@@ -252,7 +280,7 @@ function App() {
   let content = (created) ? (
       <HUD character={character} />
     ) : (
-      <CreateCharacter
+      <CreateCharacterView
         race={character.race}
         class_={character.class_}
         finish={create}

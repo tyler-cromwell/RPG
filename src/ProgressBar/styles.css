@@ -25,6 +25,15 @@
 }
 
 
+.ProgressBarXP {
+    /* The entire element */
+    border: 2px;
+    background: black;
+    text-align: center;
+    width: 145px;
+}
+
+
 .ProgressBarHealth::-webkit-progress-value {
     /* Filled part of the bar */
     background: red;
@@ -40,6 +49,12 @@
 .ProgressBarMana::-webkit-progress-value {
     /* Filled part of the bar */
     background: rgb(50, 90, 255);
+}
+
+
+.ProgressBarXP::-webkit-progress-value {
+    /* Filled part of the bar */
+    background: rgb(100, 50, 210);
 }
 
 
@@ -69,6 +84,15 @@
 
 
 .ProgressBarMana::-webkit-progress-bar {
+    /* Empty part of the bar */
+    background: lightgrey;
+    border-radius: 5px;
+    overflow: hidden;   /* Critical */
+    width: 145px;
+}
+
+
+.ProgressBarXP::-webkit-progress-bar {
     /* Empty part of the bar */
     background: lightgrey;
     border-radius: 5px;

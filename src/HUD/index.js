@@ -12,6 +12,7 @@ function HUD(props) {
       <div><ProgressBar id='Health' value={props.character.health} max={props.character.maxHealth}/></div>
       <div><ProgressBar id='Stamina' value={props.character.stamina} max={props.character.maxStamina}/></div>
       <div><ProgressBar id='Mana' value={props.character.mana} max={props.character.maxMana}/></div>
+      <div><ProgressBar id='XP' value={props.character.xp} max={props.character.maxXP}/></div>
     </div>
     <div id="hudBackpack">
       <span className="label">Backpack goes here</span>

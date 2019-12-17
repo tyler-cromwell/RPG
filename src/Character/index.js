@@ -6,7 +6,7 @@ import { classes } from './Classes'
 import './index.css'
 
 
-function CreateCharacter(props) {
+function CreateCharacterView(props) {
   const [name, setName] = useState('')
   const [race, setRace] = useState(props.race)
   const [class_, setClass] = useState(props.class_)
@@ -52,5 +52,6 @@ function CreateCharacter(props) {
   )
 }
 
-
-export default CreateCharacter;
+export {
+  CreateCharacterView
+};
