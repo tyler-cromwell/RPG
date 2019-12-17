@@ -1,8 +1,8 @@
 import React, { useState, useReducer } from 'react'
 
 import { CreateCharacterView } from './Character'
-import { races, Human, Dwarf, HighElf, DarkElf, Orc, Saurus } from './Character/Races'
-import { classes, Druid, Hunter, Mage, Paladin, Priest, Reaper, Rogue, Shaman, Warlock, Warrior } from './Character/Classes'
+import { races } from './Character/Races'
+import { classes } from './Character/Classes'
 import HUD from './HUD'
 
 import './App.css'
@@ -63,7 +63,7 @@ const reducer = (state, action) => {
         newState = {...newState, maxMana: mm}
       }
 
-      if (state.stamina > mm) {
+      if (state.mana > mm) {
         newState = {...newState, maxMana: mm}
         newState = {...newState, mana: mm}
       }
@@ -79,9 +79,57 @@ const reducer = (state, action) => {
         newState = {...newState, maxXP: mxp}
       }
 
-      if (state.stamina > mm) {
+      if (state.xp > mm) {
         newState = {...newState, maxXP: mxp}
         newState = {...newState, xp: mxp}
+      }
+
+      return newState
+    case 'modMaxHealth':
+      let mmh = action.value
+
+      if (state.maxHealth + mmh < 0) {
+        newState = {...newState, maxHealth: 0}
+        newState = {...newState, health: 0}
+      } else {
+        newState = {...newState, maxHealth: state.maxHealth + mmh}
+      }
+
+      if (state.health > state.maxHealth) {
+        newState = {...newState, maxHealth: state.maxHealth + mmh}
+        newState = {...newState, health: state.maxHealth + mmh}
+      }
+
+      return newState
+    case 'modMaxStamina':
+      let mms = action.value
+
+      if (state.maxStamina + mms < 0) {
+        newState = {...newState, maxStamina: 0}
+        newState = {...newState, stamina: 0}
+      } else {
+        newState = {...newState, stamina: state.maxStamina + mms}
+      }
+
+      if (state.stamina > mms) {
+        newState = {...newState, maxStamina: state.maxStamina + mms}
+        newState = {...newState, stamina: state.maxStamina + mms}
+      }
+
+      return newState
+    case 'modMaxMana':
+      let mmm = action.value
+
+      if (state.maxMana + mmm < 0) {
+        newState = {...newState, maxMana: 0}
+        newState = {...newState, mana: 0}
+      } else {
+        newState = {...newState, mana: state.maxMana + mmm}
+      }
+
+      if (state.mana > mmm) {
+        newState = {...newState, maxMana: state.maxMana + mmm}
+        newState = {...newState, mana: state.maxMana + mmm}
       }
 
       return newState
@@ -133,6 +181,42 @@ const reducer = (state, action) => {
       }
 
       return newState
+    case 'modHealth':
+      let modh = action.value
+
+      if (state.health + modh > state.maxHealth) {
+        newState = {...newState, health: state.maxHealth}
+      } else if (state.health + modh < 0) {
+        newState = {...newState, health: 0}
+      } else {
+        newState = {...newState, health: state.health + modh}
+      }
+
+      return newState
+    case 'modStamina':
+      let mods = action.value
+
+      if (state.stamina + mods > state.maxStamina) {
+        newState = {...newState, stamina: state.maxStamina}
+      } else if (state.stamina + mods < 0) {
+        newState = {...newState, stamina: 0}
+      } else {
+        newState = {...newState, stamina: state.stamina + mods}
+      }
+
+      return newState
+    case 'modMana':
+      let modm = action.value
+
+      if (state.mana + modm > state.maxMana) {
+        newState = {...newState, mana: state.maxMana}
+      } else if (state.mana + modm < 0) {
+        newState = {...newState, mana: 0}
+      } else {
+        newState = {...newState, mana: state.mana + modm}
+      }
+
+      return newState
     default:
       return state
   }
@@ -144,146 +228,14 @@ function App() {
   const [created, setCreated] = useState(false)
 
 
-  const create = (name, race, class_) => {
-    if (name !== "") {
-      let modMaxHealth = 0
-      let modMaxStamina = 0
-      let modMaxMana = 0
-      let modHealth = 0
-      let modStamina = 0
-      let modMana = 0
-
-      switch (race) {
-        case 'Human':
-          modMaxHealth += Human.modHealth
-          modMaxStamina += Human.modStamina
-          modMaxMana += Human.modMana
-          modHealth += Human.modHealth
-          modStamina += Human.modStamina
-          modMana += Human.modMana
-          break
-        case 'Dwarf':
-          modMaxHealth += Dwarf.modHealth
-          modMaxStamina += Dwarf.modStamina
-          modMaxMana += Dwarf.modMana
-          modHealth += Dwarf.modHealth
-          modStamina += Dwarf.modStamina
-          modMana += Dwarf.modMana
-          break
-        case 'High Elf':
-          modMaxHealth += HighElf.modHealth
-          modMaxStamina += HighElf.modStamina
-          modMaxMana += HighElf.modMana
-          modHealth += HighElf.modHealth
-          modStamina += HighElf.modStamina
-          modMana += HighElf.modMana
-          break
-        case 'Dark Elf':
-          modMaxHealth += DarkElf.modHealth
-          modMaxStamina += DarkElf.modStamina
-          modMaxMana += DarkElf.modMana
-          modHealth += DarkElf.modHealth
-          modStamina += DarkElf.modStamina
-          modMana += DarkElf.modMana
-          break
-        case 'Orc':
-          modMaxHealth += Orc.modHealth
-          modMaxStamina += Orc.modStamina
-          modMaxMana += Orc.modMana
-          modHealth += Orc.modHealth
-          modStamina += Orc.modStamina
-          modMana += Orc.modMana
-          break
-        case 'Saurus':
-          modMaxHealth += Saurus.modHealth
-          modMaxStamina += Saurus.modStamina
-          modMaxMana += Saurus.modMana
-          modHealth += Saurus.modHealth
-          modStamina += Saurus.modStamina
-          modMana += Saurus.modMana
-          break
-        default:
-      }
-
-      switch(class_) {
-        case 'Druid': 
-          modMaxMana += Druid.modMana
-          modMana += Druid.modMana
-          break
-        case 'Hunter':
-          modMaxHealth += Hunter.modHealth
-          modMaxStamina += Hunter.modStamina
-          modHealth += Hunter.modHealth
-          modStamina += Hunter.modStamina
-          break
-        case 'Mage':
-          modMaxMana += Mage.modMana
-          modMana += Mage.modMana
-          break
-        case 'Paladin':
-          modMaxHealth += Paladin.modHealth
-          modMaxStamina += Paladin.modStamina
-          modMaxMana += Paladin.modMana
-          modHealth += Paladin.modHealth
-          modStamina += Paladin.modStamina
-          modMana += Paladin.modMana
-          break
-        case 'Priest':
-          modMaxMana += Priest.modMana
-          modMana += Priest.modMana
-          break
-        case 'Reaper':
-          modMaxHealth += Reaper.modHealth
-          modMaxStamina += Reaper.modStamina
-          modMaxMana += Reaper.modMana
-          modHealth += Reaper.modHealth
-          modStamina += Reaper.modStamina
-          modMana += Reaper.modMana
-          break
-        case 'Rogue':
-          modMaxHealth += Rogue.modHealth
-          modMaxStamina += Rogue.modStamina
-          modHealth += Rogue.modHealth
-          modStamina += Rogue.modStamina
-          break
-        case 'Shaman':
-          modMaxMana += Shaman.modMana
-          modMana += Shaman.modMana
-          break
-        case 'Warlock':
-          modMaxMana += Warlock.modMana
-          modMana += Warlock.modMana
-          break
-        case 'Warrior':
-          modMaxHealth += Warrior.modHealth
-          modMaxStamina += Warrior.modStamina
-          modHealth += Warrior.modHealth
-          modStamina += Warrior.modStamina
-          break
-        default:
-      }
-
-      dispatch({type: 'setName', value: name})
-      dispatch({type: 'setRace', value: race})
-      dispatch({type: 'setClass', value: class_})
-      dispatch({type: 'setMaxHealth', value: character.maxHealth + modMaxHealth})
-      dispatch({type: 'setMaxStamina', value: character.maxStamina + modMaxStamina})
-      dispatch({type: 'setMaxMana', value: character.maxMana + modMaxMana})
-      dispatch({type: 'setHealth', value: character.health + modHealth})
-      dispatch({type: 'setStamina', value: character.stamina + modStamina})
-      dispatch({type: 'setMana', value: character.mana + modMana})
-      setCreated(true)
-    }
-  }
-
-
   let content = (created) ? (
       <HUD character={character} />
     ) : (
       <CreateCharacterView
         race={character.race}
         class_={character.class_}
-        finish={create}
+        dispatch={dispatch}
+        setCreated={setCreated}
       />
   );
 
