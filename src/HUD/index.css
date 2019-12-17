@@ -1,0 +1,36 @@
+#hudContainer {
+    /*
+    align-items: center;
+    grid-area: content;
+    justify-content: center;
+    margin: 0px;
+    min-height: 100vh;
+    padding: 0px;
+    */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    min-height: 100vh;
+}
+
+
+#hudStats {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+
+#hudInteraction {
+
+}
+
+
+#hudBackpack {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+
+#hudSpellbook {
+    grid-column: 3;
+    grid-row: 2;
+}
