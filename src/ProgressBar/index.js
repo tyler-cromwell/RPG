@@ -7,7 +7,7 @@ function ProgressBar(props) {
   return (
     <Fragment>
       <progress
-        className={'ProgressBar'+ props.id}
+        className={'ProgressBar'+ props.className}
         value={props.value}
         max={props.max}
       />
