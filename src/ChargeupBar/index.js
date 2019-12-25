@@ -24,7 +24,7 @@ function ChargeupBar(props) {
   }, [progress])
 
 
-  return render ? <ProgressBar id="words" value={(progress / (props.end * 1000) * props.end).toFixed(1)} max={props.end}/> : null;
+  return render ? <ProgressBar className="ChargeupBar" value={(progress / (props.end * 1000) * props.end).toFixed(1)} max={props.end}/> : null;
 }
 
 
