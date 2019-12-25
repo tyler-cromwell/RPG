@@ -5,7 +5,7 @@ import ProgressBar from '../ProgressBar'
 
 function CooldownBar(props) {
   const [render, setRender] = useState(true);
-  const [progress, setProgress] = useState(props.initial * 1000)
+  const [progress, setProgress] = useState(props.start * 1000)
 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function CooldownBar(props) {
   }, [progress])
 
 
-  return render ? <ProgressBar id="words" value={(progress / (props.initial * 1000) * props.initial).toFixed(1)} max={props.initial}/> : null;
+  return render ? <ProgressBar id="words" value={(progress / (props.start * 1000) * props.start).toFixed(1)} max={props.start}/> : null;
 }
 
 
