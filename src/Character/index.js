@@ -381,13 +381,13 @@ function CreateCharacter(props) {
         />
         <select
           id="characterInputRace"
-          onClick={evt => setRace(evt.target.value)}
+          onChange={evt => setRace(evt.target.value)}
         >
           {races.map(r => <option key={r} value={r}>{r}</option>)}
         </select>
         <select
           id="characterInputClass"
-          onClick={evt => setClass(evt.target.value)}
+          onChange={evt => setClass(evt.target.value)}
         >
           {classes[race].map(c => <option key={c} value={c}>{c}</option>)}
         </select>
