@@ -1,12 +1,12 @@
 const classes = {
-  //          ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest', 'Reaper', 'Rogue', 'Shaman', 'Warlock', 'Warrior'],
-  'Human':    [                   'Mage', 'Paladin', 'Priest', 'Reaper', 'Rogue',           'Warlock', 'Warrior'], //-3
-  'Dwarf':    [         'Hunter',         'Paladin', 'Priest', 'Reaper', 'Rogue', 'Shaman',            'Warrior'], //-3
-  'High Elf': ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest',           'Rogue',           'Warlock', 'Warrior'], //-2
+  //          ['Druid', 'Hunter', 'Mage', 'Necrolord', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'],
+  'Human':    [         'Hunter', 'Mage', 'Necrolord', 'Paladin', 'Priest', 'Rogue',           'Warlock', 'Warrior'], //-2
+  'Dwarf':    [         'Hunter',                      'Paladin', 'Priest', 'Rogue', 'Shaman',            'Warrior'], //-4
+  'High Elf': ['Druid', 'Hunter', 'Mage',              'Paladin', 'Priest', 'Rogue',           'Warlock', 'Warrior'], //-2
 
-  'Dark Elf': [                   'Mage',            'Priest', 'Reaper', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], //-3
-  'Orc':      [         'Hunter',                    'Priest', 'Reaper', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], //-3
-  'Saurus':   ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest',           'Rogue', 'Shaman',            'Warrior']  //-2
+  'Dark Elf': [         'Hunter', 'Mage', 'Necrolord',            'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], //-2
+  'Orc':      [         'Hunter',                                 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'], //-4
+  'Saurus':   ['Druid', 'Hunter', 'Mage',              'Paladin', 'Priest', 'Rogue', 'Shaman',            'Warrior']  //-2
 }
 
 
@@ -26,6 +26,13 @@ const Mage = {
 }
 
 
+const Necrolord = {
+  modHealth: 10,
+  modStamina: 10,
+  modMana: 10
+}
+
+
 const Paladin = {
   modHealth: 10,
   modStamina: 10,
@@ -35,13 +42,6 @@ const Paladin = {
 
 const Priest = {
   modMana: 30
-}
-
-
-const Reaper = {
-  modHealth: 10,
-  modStamina: 10,
-  modMana: 10
 }
 
 
@@ -74,7 +74,7 @@ export {
   Mage,
   Paladin,
   Priest,
-  Reaper,
+  Necrolord,
   Rogue,
   Shaman,
   Warlock,

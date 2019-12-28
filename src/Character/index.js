@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { races, Human, Dwarf, HighElf, DarkElf, Orc, Saurus } from './Races'
-import { classes, Druid, Hunter, Mage, Paladin, Priest, Reaper, Rogue, Shaman, Warlock, Warrior } from './Classes'
+import { classes, Druid, Hunter, Mage, Necrolord, Paladin, Priest, Rogue, Shaman, Warlock, Warrior } from './Classes'
 
 import './index.css'
 
@@ -312,6 +312,14 @@ function CreateCharacter(props) {
           modMaxMana += Mage.modMana
           modMana += Mage.modMana
           break
+        case 'Necrolord':
+          modMaxHealth += Necrolord.modHealth
+          modMaxStamina += Necrolord.modStamina
+          modMaxMana += Necrolord.modMana
+          modHealth += Necrolord.modHealth
+          modStamina += Necrolord.modStamina
+          modMana += Necrolord.modMana
+          break
         case 'Paladin':
           modMaxHealth += Paladin.modHealth
           modMaxStamina += Paladin.modStamina
@@ -323,14 +331,6 @@ function CreateCharacter(props) {
         case 'Priest':
           modMaxMana += Priest.modMana
           modMana += Priest.modMana
-          break
-        case 'Reaper':
-          modMaxHealth += Reaper.modHealth
-          modMaxStamina += Reaper.modStamina
-          modMaxMana += Reaper.modMana
-          modHealth += Reaper.modHealth
-          modStamina += Reaper.modStamina
-          modMana += Reaper.modMana
           break
         case 'Rogue':
           modMaxHealth += Rogue.modHealth
