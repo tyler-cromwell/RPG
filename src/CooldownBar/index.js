@@ -24,7 +24,7 @@ function CooldownBar(props) {
   }, [progress])
 
 
-  return render ? <ProgressBar className="CooldownBar" value={(progress / (props.start * 1000) * props.start).toFixed(1)} max={props.start}/> : null;
+  return render ? <ProgressBar className="CooldownBar" value={(progress / (props.start * 1000) * props.start).toFixed(1)} max={props.start}/> : props.replacement
 }
 
 
