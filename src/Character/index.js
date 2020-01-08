@@ -8,215 +8,232 @@ import './index.css'
 
 const initial = {
   name: '', race: races[0], class_: classes[races[0]][0], level: 1,
-  maxHealth: 100, maxStamina: 100, maxMana: 100, maxXP: 100,
-  health: 100, stamina: 100, mana: 100, xp: 0
+  maxHealth: 10, maxEnergy: 10, maxMana: 10, maxXP: 100,
+  health: 10, energy: 10, mana: 10, xp: 0,
+  strength: 10,
+  perception: 10,
+  endurance: 10,
+  charisma: 10,
+  intelligence: 10,
+  agility: 10,
+  willpower: 10
 }
 
 
 const reducer = (state, action) => {
-  let newState = state
-
   switch (action.type) {
-    case 'setName':     return {...newState, name: action.value}
-    case 'setRace':     return {...newState, race: action.value}
-    case 'setClass':    return {...newState, class_: action.value}
-    case 'setLevel':    return {...newState, level: action.value}
+    case 'setName':     return {...state, name: action.value}
+    case 'setRace':     return {...state, race: action.value}
+    case 'setClass':    return {...state, class_: action.value}
+    case 'setLevel':    return {...state, level: action.value}
     case 'setMaxHealth':
-      let mh = action.value
-
-      if (mh < 0) {
-        newState = {...newState, maxHealth: 0}
-        newState = {...newState, health: 0}
+      if (action.value <= 0) {
+        return {...state, maxHealth: 0, health: 0}
+      } else if (state.health > action.value) {
+        return {...state, maxHealth: action.value, health: action.value}
       } else {
-        newState = {...newState, maxHealth: mh}
+        return {...state, maxHealth: action.value}
       }
-
-      if (state.health > mh) {
-        newState = {...newState, maxHealth: mh}
-        newState = {...newState, health: mh}
-      }
-
-      return newState
-    case 'setMaxStamina':
-      let ms = action.value
-
-      if (ms < 0) {
-        newState = {...newState, maxStamina: 0}
-        newState = {...newState, stamina: 0}
+    case 'setMaxEnergy':
+      if (action.value <= 0) {
+        return {...state, maxEnergy: 0, energy: 0}
+      } else if (state.energy > action.value) {
+        return {...state, maxEnergy: action.value, energy: action.value}
       } else {
-        newState = {...newState, maxStamina: ms}
+        return {...state, maxEnergy: action.value}
       }
-
-      if (state.stamina > ms) {
-        newState = {...newState, maxStamina: ms}
-        newState = {...newState, stamina: ms}
-      }
-
-      return newState
     case 'setMaxMana':
-      let mm = action.value
-
-      if (mm < 0) {
-        newState = {...newState, maxMana: 0}
-        newState = {...newState, mana: 0}
+      if (action.value < 0) {
+        return {...state, maxMana: 0, mana: 0}
+      } else if (state.mana > action.value) {
+        return {...state, maxMana: action.value, mana: action.value}
       } else {
-        newState = {...newState, maxMana: mm}
+        return {...state, maxMana: action.value}
       }
-
-      if (state.mana > mm) {
-        newState = {...newState, maxMana: mm}
-        newState = {...newState, mana: mm}
-      }
-
-      return newState
     case 'setMaxXP':
-      let mxp = action.value
-
-      if (mxp < 0) {
-        newState = {...newState, maxXP: 0}
-        newState = {...newState, xp: 0}
+      if (action.value <= 0) {
+        return {...state, maxXP: 0, xp: 0}
+      } else if (state.xp > action.value) {
+        return {...state, maxXP: action.value, xp: action.value}
       } else {
-        newState = {...newState, maxXP: mxp}
+        return {...state, maxXP: action.value}
       }
-
-      if (state.xp > mm) {
-        newState = {...newState, maxXP: mxp}
-        newState = {...newState, xp: mxp}
-      }
-
-      return newState
-    case 'modMaxHealth':
-      let mmh = action.value
-
-      if (state.maxHealth + mmh < 0) {
-        newState = {...newState, maxHealth: 0}
-        newState = {...newState, health: 0}
-      } else {
-        newState = {...newState, maxHealth: state.maxHealth + mmh}
-      }
-
-      if (state.health > state.maxHealth) {
-        newState = {...newState, maxHealth: state.maxHealth + mmh}
-        newState = {...newState, health: state.maxHealth + mmh}
-      }
-
-      return newState
-    case 'modMaxStamina':
-      let mms = action.value
-
-      if (state.maxStamina + mms < 0) {
-        newState = {...newState, maxStamina: 0}
-        newState = {...newState, stamina: 0}
-      } else {
-        newState = {...newState, stamina: state.maxStamina + mms}
-      }
-
-      if (state.stamina > mms) {
-        newState = {...newState, maxStamina: state.maxStamina + mms}
-        newState = {...newState, stamina: state.maxStamina + mms}
-      }
-
-      return newState
-    case 'modMaxMana':
-      let mmm = action.value
-
-      if (state.maxMana + mmm < 0) {
-        newState = {...newState, maxMana: 0}
-        newState = {...newState, mana: 0}
-      } else {
-        newState = {...newState, mana: state.maxMana + mmm}
-      }
-
-      if (state.mana > mmm) {
-        newState = {...newState, maxMana: state.maxMana + mmm}
-        newState = {...newState, mana: state.maxMana + mmm}
-      }
-
-      return newState
     case 'setHealth':
-      let h = action.value
-
-      if (h > state.maxHealth) {
-        newState = {...newState, health: state.maxHealth}
-      } else if (h < 0) {
-        newState = {...newState, health: 0}
+      if (action.value > state.maxHealth) {
+        return {...state, health: state.maxHealth}
+      } else if (action.value <= 0) {
+        return {...state, health: 0}
       } else {
-        newState = {...newState, health: h}
+        return {...state, health: action.value}
       }
-
-      return newState
-    case 'setStamina':
-      let s = action.value
-
-      if (s > state.maxStamina) {
-        newState = {...newState, stamina: state.maxStamina}
-      } else if (s < 0) {
-        newState = {...newState, stamina: 0}
+    case 'setEnergy':
+      if (action.value > state.maxEnergy) {
+        return {...state, energy: state.maxEnergy}
+      } else if (action.value <= 0) {
+        return {...state, energy: 0}
       } else {
-        newState = {...newState, stamina: s}
+        return {...state, energy: action.value}
       }
-
-      return newState
     case 'setMana':
-      let m = action.value
-
-      if (m > state.maxMana) {
-        newState = {...newState, mana: state.maxMana}
-      } else if (m < 0) {
-        newState = {...newState, mana: 0}
+      if (action.value > state.maxMana) {
+        return {...state, mana: state.maxMana}
+      } else if (action.value <= 0) {
+        return {...state, mana: 0}
       } else {
-        newState = {...newState, mana: m}
+        return {...state, mana: action.value}
       }
-
-      return newState
     case 'setXP':
-      let xp = action.value
-
-      if (xp > state.maxXP) {
-        newState = {...newState, xp: state.maxXP}
-      } else if (xp < 0) {
-        newState = {...newState, xp: 0}
+      if (action.value > state.maxXP) {
+        return {...state, xp: state.maxXP}
+      } else if (action.value <= 0) {
+        return {...state, xp: 0}
       } else {
-        newState = {...newState, xp: xp}
+        return {...state, xp: action.value}
       }
-
-      return newState
+    case 'modMaxHealth':
+      if (state.maxHealth + action.value <= 0) {
+        return {...state, maxHealth: 0, health: 0}
+      } else if (state.health > state.maxHealth + action.value) {
+        return {
+          ...state,
+          maxHealth: state.maxHealth + action.value,
+          health: state.maxHealth + action.value
+        }
+      } else {
+        return {...state, maxHealth: state.maxHealth + action.value}
+      }
+    case 'modMaxEnergy':
+      if (state.maxEnergy + action.value <= 0) {
+        return {...state, maxEnergy: 0, energy: 0}
+      } else if (state.energy > state.maxEnergy + action.value) {
+        return {
+          ...state,
+          maxEnergy: state.maxEnergy + action.value,
+          energy: state.maxEnergy + action.value
+        }
+      } else {
+        return {...state, energy: state.maxEnergy + action.value}
+      }
+    case 'modMaxMana':
+      if (state.maxMana + action.value <= 0) {
+        return {...state, maxMana: 0, mana: 0}
+      } else if (state.mana > state.maxMana + action.value) {
+        return {
+          ...state,
+          maxMana: state.maxMana + action.value,
+          mana: state.maxMana + action.value
+        }
+      } else {
+        return {...state, mana: state.maxMana + action.value}
+      }
     case 'modHealth':
-      let modh = action.value
-
-      if (state.health + modh > state.maxHealth) {
-        newState = {...newState, health: state.maxHealth}
-      } else if (state.health + modh < 0) {
-        newState = {...newState, health: 0}
+      if (state.health + action.value > state.maxHealth) {
+        return {...state, health: state.maxHealth}
+      } else if (state.health + action.value <= 0) {
+        return {...state, health: 0}
       } else {
-        newState = {...newState, health: state.health + modh}
+        return {...state, health: state.health + action.value}
       }
-
-      return newState
-    case 'modStamina':
-      let mods = action.value
-
-      if (state.stamina + mods > state.maxStamina) {
-        newState = {...newState, stamina: state.maxStamina}
-      } else if (state.stamina + mods < 0) {
-        newState = {...newState, stamina: 0}
+    case 'modEnergy':
+      if (state.energy + action.value > state.maxEnergy) {
+        return {...state, energy: state.maxEnergy}
+      } else if (state.energy + action.value <= 0) {
+        return {...state, energy: 0}
       } else {
-        newState = {...newState, stamina: state.stamina + mods}
+        return {...state, energy: state.energy + action.value}
       }
-
-      return newState
     case 'modMana':
-      let modm = action.value
-
-      if (state.mana + modm > state.maxMana) {
-        newState = {...newState, mana: state.maxMana}
-      } else if (state.mana + modm < 0) {
-        newState = {...newState, mana: 0}
+      if (state.mana + action.value > state.maxMana) {
+        return {...state, mana: state.maxMana}
+      } else if (state.mana + action.value <= 0) {
+        return {...state, mana: 0}
       } else {
-        newState = {...newState, mana: state.mana + modm}
+        return {...state, mana: state.mana + action.value}
       }
-
-      return newState
+    case 'modStrength':
+      if (state.strength + action.value <= 0) {
+        return {
+          ...state,
+          maxEnergy: 0,
+          energy: 0,
+          strength: 0
+        }
+      } else {
+        return {
+          ...state,
+          maxEnergy: state.maxEnergy + action.value,
+          energy: state.energy + action.value,
+          strength: state.strength + action.value
+        }
+      }
+    case 'modPerception':
+      if (state.perception + action.value <= 0) {
+        return {
+          ...state,
+          endurance: 0
+        }
+      } else {
+        return {
+          ...state,
+          perception: state.perception + action.value
+        }
+      }
+    case 'modEndurance':
+      if (state.endurance + action.value <= 0) {
+        return {
+          ...state,
+          maxHealth: 0,
+          health: 0,
+          endurance: 0
+        }
+      } else {
+        return {
+          ...state,
+          maxHealth: state.maxHealth + action.value,
+          health: state.health + action.value,
+          endurance: state.endurance + action.value
+        }
+      }
+    case 'modIntelligence':
+      if (state.intelligence + action.value <= 0) {
+        return {
+          ...state,
+          maxMana: 0,
+          mana: 0,
+          endurance: 0
+        }
+      } else {
+        return {
+          ...state,
+          maxMana: state.maxMana + action.value,
+          mana: state.mana + action.value,
+          intelligence: state.intelligence + action.value
+        }
+      }
+    case 'modAgility':
+      if (state.agility + action.value <= 0) {
+        return {
+          ...state,
+          agility: 0
+        }
+      } else {
+        return {
+          ...state,
+          agility: state.agility + action.value
+        }
+      }
+    case 'modWillpower':
+      if (state.willpower + action.value <= 0) {
+        return {
+          ...state,
+          willpower: 0
+        }
+      } else {
+        return {
+          ...state,
+          willpower: state.willpower + action.value
+        }
+      }
     default:
       return state
   }
@@ -237,133 +254,56 @@ function CreateCharacter(props) {
 
 
   const create = (name, race, class_, dispatch, setCreated) => {
-    if (name !== "") {
-      let modMaxHealth = 0
-      let modMaxStamina = 0
-      let modMaxMana = 0
-      let modHealth = 0
-      let modStamina = 0
-      let modMana = 0
+    let modStrength = 0
+    let modPerception = 0
+    let modEndurance = 0
+    let modIntelligence = 0
+    let modAgility = 0
+    let modWillpower = 0
+    let selectedRace = null
+    let selectedClass = null
 
+    if (name !== "") {
       switch (race) {
-        case 'Human':
-          modMaxHealth += Human.modHealth
-          modMaxStamina += Human.modStamina
-          modMaxMana += Human.modMana
-          modHealth += Human.modHealth
-          modStamina += Human.modStamina
-          modMana += Human.modMana
-          break
-        case 'Dwarf':
-          modMaxHealth += Dwarf.modHealth
-          modMaxStamina += Dwarf.modStamina
-          modMaxMana += Dwarf.modMana
-          modHealth += Dwarf.modHealth
-          modStamina += Dwarf.modStamina
-          modMana += Dwarf.modMana
-          break
-        case 'High Elf':
-          modMaxHealth += HighElf.modHealth
-          modMaxStamina += HighElf.modStamina
-          modMaxMana += HighElf.modMana
-          modHealth += HighElf.modHealth
-          modStamina += HighElf.modStamina
-          modMana += HighElf.modMana
-          break
-        case 'Dark Elf':
-          modMaxHealth += DarkElf.modHealth
-          modMaxStamina += DarkElf.modStamina
-          modMaxMana += DarkElf.modMana
-          modHealth += DarkElf.modHealth
-          modStamina += DarkElf.modStamina
-          modMana += DarkElf.modMana
-          break
-        case 'Orc':
-          modMaxHealth += Orc.modHealth
-          modMaxStamina += Orc.modStamina
-          modMaxMana += Orc.modMana
-          modHealth += Orc.modHealth
-          modStamina += Orc.modStamina
-          modMana += Orc.modMana
-          break
-        case 'Saurus':
-          modMaxHealth += Saurus.modHealth
-          modMaxStamina += Saurus.modStamina
-          modMaxMana += Saurus.modMana
-          modHealth += Saurus.modHealth
-          modStamina += Saurus.modStamina
-          modMana += Saurus.modMana
-          break
+        case 'Human':       selectedRace = Human;       break
+        case 'Dwarf':       selectedRace = Dwarf;       break
+        case 'High Elf':    selectedRace = HighElf;     break
+        case 'Dark Elf':    selectedRace = DarkElf;     break
+        case 'Orc':         selectedRace = Orc;         break
+        case 'Saurus':      selectedRace = Saurus;      break
         default:
       }
 
       switch(class_) {
-        case 'Druid':
-          modMaxMana += Druid.modMana
-          modMana += Druid.modMana
-          break
-        case 'Hunter':
-          modMaxHealth += Hunter.modHealth
-          modMaxStamina += Hunter.modStamina
-          modHealth += Hunter.modHealth
-          modStamina += Hunter.modStamina
-          break
-        case 'Mage':
-          modMaxMana += Mage.modMana
-          modMana += Mage.modMana
-          break
-        case 'Necrolord':
-          modMaxHealth += Necrolord.modHealth
-          modMaxStamina += Necrolord.modStamina
-          modMaxMana += Necrolord.modMana
-          modHealth += Necrolord.modHealth
-          modStamina += Necrolord.modStamina
-          modMana += Necrolord.modMana
-          break
-        case 'Paladin':
-          modMaxHealth += Paladin.modHealth
-          modMaxStamina += Paladin.modStamina
-          modMaxMana += Paladin.modMana
-          modHealth += Paladin.modHealth
-          modStamina += Paladin.modStamina
-          modMana += Paladin.modMana
-          break
-        case 'Priest':
-          modMaxMana += Priest.modMana
-          modMana += Priest.modMana
-          break
-        case 'Rogue':
-          modMaxHealth += Rogue.modHealth
-          modMaxStamina += Rogue.modStamina
-          modHealth += Rogue.modHealth
-          modStamina += Rogue.modStamina
-          break
-        case 'Shaman':
-          modMaxMana += Shaman.modMana
-          modMana += Shaman.modMana
-          break
-        case 'Warlock':
-          modMaxMana += Warlock.modMana
-          modMana += Warlock.modMana
-          break
-        case 'Warrior':
-          modMaxHealth += Warrior.modHealth
-          modMaxStamina += Warrior.modStamina
-          modHealth += Warrior.modHealth
-          modStamina += Warrior.modStamina
-          break
+        case 'Druid':       selectedClass = Druid;      break
+        case 'Hunter':      selectedClass = Hunter;     break
+        case 'Mage':        selectedClass = Mage;       break
+        case 'Necrolord':   selectedClass = Necrolord;  break
+        case 'Paladin':     selectedClass = Paladin;    break
+        case 'Priest':      selectedClass = Priest;     break
+        case 'Rogue':       selectedClass = Rogue;      break
+        case 'Shaman':      selectedClass = Shaman;     break
+        case 'Warlock':     selectedClass = Warlock;    break
+        case 'Warrior':     selectedClass = Warrior;    break
         default:
       }
+
+      modStrength += selectedRace.lvlStrength + selectedClass.lvlStrength
+      modPerception += selectedRace.lvlPerception + selectedClass.lvlPerception
+      modEndurance += selectedRace.lvlEndurance + selectedClass.lvlEndurance
+      modIntelligence += selectedRace.lvlIntelligence + selectedClass.lvlIntelligence
+      modAgility += selectedRace.lvlAgility + selectedClass.lvlAgility
+      modWillpower += selectedRace.lvlWillpower + selectedClass.lvlWillpower
 
       dispatch({type: 'setName', value: name})
       dispatch({type: 'setRace', value: race})
       dispatch({type: 'setClass', value: class_})
-      dispatch({type: 'modMaxHealth', value: modMaxHealth})
-      dispatch({type: 'modMaxStamina', value: modMaxStamina})
-      dispatch({type: 'modMaxMana', value: modMaxMana})
-      dispatch({type: 'modHealth', value: modHealth})
-      dispatch({type: 'modStamina', value: modStamina})
-      dispatch({type: 'modMana', value: modMana})
+      dispatch({type: 'modStrength', value: modStrength})
+      dispatch({type: 'modPerception', value: modPerception})
+      dispatch({type: 'modEndurance', value: modEndurance})
+      dispatch({type: 'modIntelligence', value: modIntelligence})
+      dispatch({type: 'modAgility', value: modAgility})
+      dispatch({type: 'modWillpower', value: modWillpower})
       setCreated(true)
     }
   }

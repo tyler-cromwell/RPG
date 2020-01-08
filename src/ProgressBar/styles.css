@@ -7,7 +7,7 @@
 }
 
 
-.ProgressBarStamina {
+.ProgressBarEnergy {
     /* The entire element */
     border: 2px;
     background: black;
@@ -40,7 +40,7 @@
 }
 
 
-.ProgressBarStamina::-webkit-progress-value {
+.ProgressBarEnergy::-webkit-progress-value {
     /* Filled part of the bar */
     background: rgb(50, 200, 0);
 }
@@ -74,7 +74,7 @@
 }
 
 
-.ProgressBarStamina::-webkit-progress-bar {
+.ProgressBarEnergy::-webkit-progress-bar {
     /* Empty part of the bar */
     background: lightgrey;
     border-radius: 5px;

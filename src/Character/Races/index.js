@@ -9,44 +9,62 @@ const races = [
 
 
 const Human = {
-  modHealth: 0,
-  modStamina: 0,
-  modMana: 0
+  lvlStrength: 0,
+  lvlPerception: 0,
+  lvlEndurance: 0,
+  lvlIntelligence: 0,
+  lvlAgility: 0,
+  lvlWillpower: 1
 }
 
 
 const Dwarf = {
-  modHealth: 10,
-  modStamina: -5,
-  modMana: -5
+  lvlStrength: 0,
+  lvlPerception: 0,
+  lvlEndurance: 1,
+  lvlIntelligence: 0,
+  lvlAgility: 0,
+  lvlWillpower: 0
 }
 
 
 const HighElf = {
-  modHealth: -15,
-  modStamina: 5,
-  modMana: 10
+  lvlStrength: 0,
+  lvlPerception: 0,
+  lvlEndurance: 0,
+  lvlIntelligence: 1,
+  lvlAgility: 0,
+  lvlWillpower: 0
 }
 
 
 const DarkElf = {
-  modHealth: -5,
-  modStamina: 0,
-  modMana: 5
+  lvlStrength: 0,
+  lvlPerception: 1,
+  lvlEndurance: 0,
+  lvlIntelligence: 0,
+  lvlAgility: 0,
+  lvlWillpower: 0
 }
 
 
 const Orc = {
-  modHealth: 10,
-  modStamina: 5,
-  modMana: -15
+  lvlStrength: 1,
+  lvlPerception: 0,
+  lvlEndurance: 0,
+  lvlIntelligence: 0,
+  lvlAgility: 0,
+  lvlWillpower: 0
 }
 
 
 const Saurus = {
-  modHealth: -5,
-  modStamina: 5,
-  modMana: 0
+  lvlStrength: 0,
+  lvlPerception: 0,
+  lvlEndurance: 0,
+  lvlIntelligence: 0,
+  lvlAgility: 1,
+  lvlWillpower: 0
 }
 
 
