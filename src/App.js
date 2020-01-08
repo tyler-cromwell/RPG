@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react'
 
 import { initial, reducer, CreateCharacter } from './Character'
-import HUD from './HUD'
+import HUD from './Interface/HUD'
 
 import './App.css'
 
