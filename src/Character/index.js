@@ -8,15 +8,15 @@ import './index.css'
 
 const initial = {
   name: '', race: races[0], class_: classes[races[0]][0], level: 1,
-  maxHealth: 10, maxEnergy: 10, maxMana: 10, maxXP: 100,
-  health: 10, energy: 10, mana: 10, xp: 0,
-  strength: 10,
-  perception: 10,
-  endurance: 10,
-  charisma: 10,
-  intelligence: 10,
-  agility: 10,
-  willpower: 10
+  maxHealth: 100, maxEnergy: 100, maxMana: 100, maxXP: 100,
+  health: 100, energy: 100, mana: 100, xp: 0,
+  strength: 5,
+  perception: 5,
+  endurance: 5,
+  charisma: 5,
+  intelligence: 5,
+  agility: 5,
+  willpower: 5
 }
 
 
